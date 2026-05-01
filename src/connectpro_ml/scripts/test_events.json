@@ -1,0 +1,343 @@
+{
+  "instructions": "Envoyer ces events dans l'ordre via le GUI RabbitMQ (exchange: marketplace.events). Copier le contenu de 'payload' dans le champ Payload et mettre le 'routing_key' correspondant.",
+
+  "events": [
+
+    {"_comment": "=== CATEGORIES ===",
+     "routing_key": "category.created",
+     "payload": {"event_type": "category.created", "version": 1, "timestamp": "2026-04-18T08:00:00Z", "data": {"id": "5ed22cca-f4fa-47c0-b24c-282b6f309c93", "value": "Web Development"}}},
+
+    {"routing_key": "category.created",
+     "payload": {"event_type": "category.created", "version": 1, "timestamp": "2026-04-18T08:00:01Z", "data": {"id": "a5df8876-dbfa-4aec-8e8e-930b018c9802", "value": "Mobile Development"}}},
+
+    {"routing_key": "category.created",
+     "payload": {"event_type": "category.created", "version": 1, "timestamp": "2026-04-18T08:00:02Z", "data": {"id": "2a5f4eda-9432-4544-ba76-085a32151e66", "value": "UI/UX Design"}}},
+
+    {"routing_key": "category.created",
+     "payload": {"event_type": "category.created", "version": 1, "timestamp": "2026-04-18T08:00:03Z", "data": {"id": "8b36247f-7de3-41f4-bc5f-69c7fd672f6e", "value": "Data Science"}}},
+
+    {"routing_key": "category.created",
+     "payload": {"event_type": "category.created", "version": 1, "timestamp": "2026-04-18T08:00:04Z", "data": {"id": "2a8b1e13-5abb-431c-8840-86c2d944e292", "value": "DevOps & Cloud"}}},
+
+    {"routing_key": "category.created",
+     "payload": {"event_type": "category.created", "version": 1, "timestamp": "2026-04-18T08:00:05Z", "data": {"id": "9aece7d0-5116-44c8-8baa-f0a93f181518", "value": "Marketing Digital"}}},
+
+
+    {"_comment": "=== PORTFOLIOS ===",
+     "routing_key": "portfolio.created",
+     "payload": {"event_type": "portfolio.created", "version": 1, "timestamp": "2026-04-18T08:01:00Z", "data": {
+       "id": "839e9294-2eeb-4886-8469-dc1b24933938",
+       "owner_id": "7c7220a4-919c-4924-967b-0e2142aabcbc",
+       "type": "freelancer", "status": "active", "active_services_count": 3,
+       "general_info": {"first_name": "Ahmed", "last_name": "Benali", "bio": "Développeur fullstack React et Node.js avec 7 ans d'expérience. Spécialisé dans les applications SaaS et les plateformes e-commerce."},
+       "location_info": {"country": "TR", "city": "Istanbul", "timezone": "Europe/Istanbul"},
+       "professional_info": {"headline": "Senior Fullstack Developer - React / Node.js / PostgreSQL", "skills": ["react", "nextjs", "nodejs", "typescript", "postgresql", "graphql", "tailwindcss", "docker"]},
+       "contact_info": {"website_url": "https://ahmed-benali.dev"},
+       "experiences": [
+         {"id": "61957e04-2ced-4306-a033-4257f4a7b519", "company": "TechStart Inc.", "role": "Senior Frontend Developer", "description": "Développement d'une plateforme SaaS de gestion de projet en React et TypeScript", "start_date": "2022-01-01", "end_date": null},
+         {"id": "c905e476-46ab-407c-ba69-38834406d93b", "company": "WebAgency Pro", "role": "Fullstack Developer", "description": "Création de sites e-commerce avec Next.js et Stripe", "start_date": "2019-06-01", "end_date": "2021-12-31"}
+       ],
+       "certifications": [
+         {"id": "b7b9866f-3ec3-40e0-95fc-51f22c344a95", "name": "AWS Certified Developer Associate", "issuing_organization": "Amazon Web Services", "issue_date": "2023-03-15", "expiry_date": "2026-03-15", "credential_url": "https://aws.amazon.com/verification/12345"}
+       ]
+     }}},
+
+    {"routing_key": "portfolio.created",
+     "payload": {"event_type": "portfolio.created", "version": 1, "timestamp": "2026-04-18T08:01:01Z", "data": {
+       "id": "b6586586-19b2-485b-8349-6dc1f6b42bca",
+       "owner_id": "80e39daf-b1c7-4a0a-afb5-b8355ae453aa",
+       "type": "freelancer", "status": "active", "active_services_count": 2,
+       "general_info": {"first_name": "Sophie", "last_name": "Martin", "bio": "Designer UI/UX passionnée par les interfaces minimalistes. J'accompagne les startups dans la création de leur identité visuelle et de leurs produits digitaux."},
+       "location_info": {"country": "FR", "city": "Lyon", "timezone": "Europe/Paris"},
+       "professional_info": {"headline": "UI/UX Designer - Figma / Design Systems / User Research", "skills": ["figma", "sketch", "adobe-xd", "prototyping", "user-research", "design-system", "html", "css"]},
+       "contact_info": {"website_url": "https://sophie-martin.design"},
+       "experiences": [
+         {"id": "a7442656-6c75-4a4d-bd9c-916847257b6b", "company": "DesignLab Studio", "role": "Lead UI/UX Designer", "description": "Direction artistique et design de produits pour des clients comme Doctolib et BlaBlaCar", "start_date": "2021-01-01", "end_date": null}
+       ],
+       "certifications": []
+     }}},
+
+    {"routing_key": "portfolio.created",
+     "payload": {"event_type": "portfolio.created", "version": 1, "timestamp": "2026-04-18T08:01:02Z", "data": {
+       "id": "18e2246f-5754-471e-b81c-b4710fc11cb3",
+       "owner_id": "a9712433-6ab9-437a-8b09-75d4ab0e6487",
+       "type": "freelancer", "status": "active", "active_services_count": 2,
+       "general_info": {"first_name": "Carlos", "last_name": "Rivera", "bio": "Mobile developer with 5 years of experience in React Native and Flutter. Built apps with 1M+ downloads on both App Store and Google Play."},
+       "location_info": {"country": "ES", "city": "Barcelona", "timezone": "Europe/Madrid"},
+       "professional_info": {"headline": "Mobile Developer - React Native / Flutter / iOS / Android", "skills": ["react-native", "flutter", "dart", "swift", "kotlin", "firebase", "typescript"]},
+       "contact_info": {"website_url": "https://carlos-rivera.dev"},
+       "experiences": [], "certifications": []
+     }}},
+
+    {"routing_key": "portfolio.created",
+     "payload": {"event_type": "portfolio.created", "version": 1, "timestamp": "2026-04-18T08:01:03Z", "data": {
+       "id": "51bbffc1-f620-4e6d-8097-0eddbce1e298",
+       "owner_id": "47420e58-2056-4894-ac08-a739c63473ee",
+       "type": "freelancer", "status": "active", "active_services_count": 2,
+       "general_info": {"first_name": "Yuki", "last_name": "Tanaka", "bio": "Data scientist et ingénieur ML. J'aide les entreprises à transformer leurs données en insights actionables avec Python, TensorFlow et des pipelines MLOps."},
+       "location_info": {"country": "JP", "city": "Tokyo", "timezone": "Asia/Tokyo"},
+       "professional_info": {"headline": "Data Scientist & ML Engineer - Python / TensorFlow / MLOps", "skills": ["python", "tensorflow", "pytorch", "scikit-learn", "pandas", "sql", "docker", "kubernetes", "mlflow"]},
+       "contact_info": {"website_url": "https://yuki-tanaka.ml"},
+       "experiences": [], "certifications": []
+     }}},
+
+    {"routing_key": "portfolio.created",
+     "payload": {"event_type": "portfolio.created", "version": 1, "timestamp": "2026-04-18T08:01:04Z", "data": {
+       "id": "eefdc387-af6d-410d-aa15-276906dfec2b",
+       "owner_id": "0ce8045d-b927-4a98-9d53-cd083b1a3c65",
+       "type": "freelancer", "status": "active", "active_services_count": 2,
+       "general_info": {"first_name": "Fatima", "last_name": "Zahra", "bio": "DevOps engineer spécialisée AWS et Azure. Je mets en place des pipelines CI/CD, de l'infrastructure as code et du monitoring pour des équipes de 5 à 200 développeurs."},
+       "location_info": {"country": "MA", "city": "Casablanca", "timezone": "Africa/Casablanca"},
+       "professional_info": {"headline": "DevOps Engineer - AWS / Terraform / Kubernetes / CI-CD", "skills": ["aws", "azure", "terraform", "kubernetes", "docker", "github-actions", "jenkins", "prometheus", "grafana"]},
+       "contact_info": {"website_url": "https://fatima-devops.com"},
+       "experiences": [], "certifications": []
+     }}},
+
+
+    {"_comment": "=== SERVICES ===",
+     "routing_key": "service.created",
+     "payload": {"event_type": "service.created", "version": 1, "timestamp": "2026-04-18T08:02:00Z", "data": {
+       "id": "20ff7930-fcd1-44dd-884e-d23f5a85f5bc",
+       "portfolio_id": "839e9294-2eeb-4886-8469-dc1b24933938",
+       "title": "Développement d'application web React / Next.js",
+       "description": "Je développe des applications web modernes avec React et Next.js. SPA, SSR, SSG, API routes. Intégration Tailwind CSS, authentification, paiement Stripe, déploiement Vercel.",
+       "status": "active",
+       "category_id": "5ed22cca-f4fa-47c0-b24c-282b6f309c93",
+       "tags": [{"id": "04656d6a-2a80-44f3-9ff3-f9365766bd47", "value": "react"}, {"id": "15633a62-01dc-4b8a-b4b3-00784d020e86", "value": "nextjs"}, {"id": "85367fb0-a972-42da-87da-450846c98a22", "value": "typescript"}, {"id": "f972b1cf-5292-46d5-be2e-0df127405c50", "value": "tailwindcss"}],
+       "awards": [],
+       "faqs": [{"id": "c6dc0ffb-d84f-44fa-91a7-0fbc19b6c450", "question": "Quels types de projets acceptez-vous ?", "answer": "SaaS, e-commerce, dashboards, landing pages, plateformes avec authentification et paiement."}, {"id": "d82ed97a-31f1-426c-8b2b-745284015231", "question": "Quel est votre délai moyen ?", "answer": "Entre 2 et 6 semaines selon la complexité."}],
+       "pricing": {"type": "fixed", "price_min": 1000, "price_max": 8000, "currency": "EUR"},
+       "created_at": "2026-04-10T08:00:00Z", "updated_at": "2026-04-10T08:00:00Z"
+     }}},
+
+    {"routing_key": "service.created",
+     "payload": {"event_type": "service.created", "version": 1, "timestamp": "2026-04-18T08:02:01Z", "data": {
+       "id": "6e4fa07c-e277-468e-aa06-9c2d7cd6c233",
+       "portfolio_id": "839e9294-2eeb-4886-8469-dc1b24933938",
+       "title": "API REST Node.js / Express / PostgreSQL",
+       "description": "Conception et développement d'APIs robustes avec Node.js et Express. Architecture REST ou GraphQL, base PostgreSQL, authentification JWT, documentation Swagger, tests unitaires.",
+       "status": "active",
+       "category_id": "5ed22cca-f4fa-47c0-b24c-282b6f309c93",
+       "tags": [{"id": "d546f1a6-7d59-462f-aa01-fdee2786f506", "value": "nodejs"}, {"id": "d12ea844-dc23-489c-912a-997c3e9c35be", "value": "express"}, {"id": "61b3699f-bf66-4c79-8efb-ddc1f4b63bde", "value": "postgresql"}, {"id": "9851cfba-cd72-4a34-bf83-e22b332c62f8", "value": "graphql"}, {"id": "1ccfed72-7239-49f3-842c-e57a46c44bae", "value": "rest-api"}],
+       "awards": [{"id": "b72928bc-4b75-4d76-9a11-34a12bc5b50a", "value": "Top Rated Seller"}],
+       "faqs": [],
+       "pricing": {"type": "hourly", "price_min": 50, "price_max": 80, "currency": "EUR"},
+       "created_at": "2026-04-08T10:00:00Z", "updated_at": "2026-04-08T10:00:00Z"
+     }}},
+
+    {"routing_key": "service.created",
+     "payload": {"event_type": "service.created", "version": 1, "timestamp": "2026-04-18T08:02:02Z", "data": {
+       "id": "ca7cfaf9-7bfd-4048-8a8f-41f0de60b96c",
+       "portfolio_id": "839e9294-2eeb-4886-8469-dc1b24933938",
+       "title": "Site WordPress sur mesure avec WooCommerce",
+       "description": "Création de sites WordPress professionnels avec WooCommerce pour la vente en ligne. Thème personnalisé, optimisation SEO, intégration des moyens de paiement.",
+       "status": "active",
+       "category_id": "5ed22cca-f4fa-47c0-b24c-282b6f309c93",
+       "tags": [{"id": "8b6fdede-b7e7-40e3-8f6e-55faffa86b39", "value": "wordpress"}, {"id": "ef13f3a0-3d35-472b-9124-7af3633100f7", "value": "woocommerce"}, {"id": "e5c46065-b298-4838-83a9-98ee58106cd4", "value": "php"}, {"id": "3449dac8-bf39-48db-9503-a4ebaac332d9", "value": "seo"}],
+       "awards": [], "faqs": [],
+       "pricing": {"type": "fixed", "price_min": 500, "price_max": 3000, "currency": "EUR"},
+       "created_at": "2026-04-01T12:00:00Z", "updated_at": "2026-04-01T12:00:00Z"
+     }}},
+
+    {"routing_key": "service.created",
+     "payload": {"event_type": "service.created", "version": 1, "timestamp": "2026-04-18T08:02:03Z", "data": {
+       "id": "402e3e76-e41b-491e-8f00-bd18586b96b4",
+       "portfolio_id": "b6586586-19b2-485b-8349-6dc1f6b42bca",
+       "title": "Design UI/UX complet pour application mobile",
+       "description": "Je conçois l'expérience utilisateur et l'interface de votre application mobile de A à Z. Recherche utilisateur, wireframes, prototypes interactifs Figma, design system, handoff développeur.",
+       "status": "active",
+       "category_id": "2a5f4eda-9432-4544-ba76-085a32151e66",
+       "tags": [{"id": "2e298f39-c675-47b1-b47c-94c1e57c95a6", "value": "figma"}, {"id": "286f7bc8-7d96-4535-b674-770eaa8dbefc", "value": "ui-design"}, {"id": "d62e350f-25a0-4a6a-ae37-edc98fa940fc", "value": "ux-design"}, {"id": "d11fb8aa-e63a-4869-9c6d-77f65d622ade", "value": "prototyping"}, {"id": "b750fb58-2463-4e0a-8ca8-18a747dff9db", "value": "mobile-design"}],
+       "awards": [{"id": "ad830627-6b21-4bbf-a396-fe33499ec2bd", "value": "Rising Star"}],
+       "faqs": [{"id": "b9b1d52e-2cda-4a52-83f6-8dd5dabc2253", "question": "Travaillez-vous aussi sur le web ?", "answer": "Oui, je fais aussi du design responsive pour les applications web et les landing pages."}],
+       "pricing": {"type": "fixed", "price_min": 2000, "price_max": 6000, "currency": "EUR"},
+       "created_at": "2026-04-15T09:00:00Z", "updated_at": "2026-04-15T09:00:00Z"
+     }}},
+
+    {"routing_key": "service.created",
+     "payload": {"event_type": "service.created", "version": 1, "timestamp": "2026-04-18T08:02:04Z", "data": {
+       "id": "801792cc-8f92-4697-9498-743fc11f110e",
+       "portfolio_id": "b6586586-19b2-485b-8349-6dc1f6b42bca",
+       "title": "Création de Design System et composants UI",
+       "description": "Je construis des design systems complets : tokens, composants réutilisables, guidelines, documentation. Compatible Figma et Storybook.",
+       "status": "active",
+       "category_id": "2a5f4eda-9432-4544-ba76-085a32151e66",
+       "tags": [{"id": "ec95dfac-646d-4a42-8a6c-02a4ce84c0c2", "value": "design-system"}, {"id": "e5c4153a-0c10-4231-ba4d-997b50d0e649", "value": "figma"}, {"id": "ed48c12c-d55b-4bb8-a889-724ff1f00c46", "value": "storybook"}, {"id": "47471844-b08e-4f59-b1ce-9529c2b300f7", "value": "component-library"}],
+       "awards": [], "faqs": [],
+       "pricing": {"type": "fixed", "price_min": 3000, "price_max": 10000, "currency": "EUR"},
+       "created_at": "2026-04-12T14:00:00Z", "updated_at": "2026-04-12T14:00:00Z"
+     }}},
+
+    {"routing_key": "service.created",
+     "payload": {"event_type": "service.created", "version": 1, "timestamp": "2026-04-18T08:02:05Z", "data": {
+       "id": "3c14ff9c-a5d2-4c7d-ab02-c686799cfa22",
+       "portfolio_id": "18e2246f-5754-471e-b81c-b4710fc11cb3",
+       "title": "Développement d'application mobile React Native",
+       "description": "Je crée des applications mobiles cross-platform performantes avec React Native. Design moderne, animations fluides, intégration API REST et GraphQL, notifications push.",
+       "status": "active",
+       "category_id": "a5df8876-dbfa-4aec-8e8e-930b018c9802",
+       "tags": [{"id": "9d0bfd34-f513-45b3-b566-79e9535dadd8", "value": "react-native"}, {"id": "39d25784-4d0c-4f76-bbaf-fc5e37ac32be", "value": "mobile"}, {"id": "ed33af6b-2396-4c52-8085-735f6ff1e742", "value": "cross-platform"}, {"id": "09d3eb34-ce37-4f5b-a7c4-d8ad33691984", "value": "typescript"}],
+       "awards": [], "faqs": [],
+       "pricing": {"type": "fixed", "price_min": 3000, "price_max": 15000, "currency": "EUR"},
+       "created_at": "2026-04-16T11:00:00Z", "updated_at": "2026-04-16T11:00:00Z"
+     }}},
+
+    {"routing_key": "service.created",
+     "payload": {"event_type": "service.created", "version": 1, "timestamp": "2026-04-18T08:02:06Z", "data": {
+       "id": "1533f974-867a-410f-8062-cc172343902b",
+       "portfolio_id": "18e2246f-5754-471e-b81c-b4710fc11cb3",
+       "title": "Application Flutter iOS et Android",
+       "description": "Développement d'applications natives avec Flutter et Dart. Performance native, single codebase, animations Material Design et Cupertino. Firebase, Supabase, REST API.",
+       "status": "active",
+       "category_id": "a5df8876-dbfa-4aec-8e8e-930b018c9802",
+       "tags": [{"id": "60583d24-8be5-4c13-b0c7-0f4ce89b6dc3", "value": "flutter"}, {"id": "aae9d0c1-6ec9-4e32-865f-f26d927ad667", "value": "dart"}, {"id": "39d25784-4d0c-4f76-bbaf-fc5e37ac32be", "value": "mobile"}, {"id": "b7b9866f-3ec3-40e0-95fc-51f22c344a95", "value": "firebase"}],
+       "awards": [{"id": "c905e476-46ab-407c-ba69-38834406d93b", "value": "Top Rated Seller"}, {"id": "61957e04-2ced-4306-a033-4257f4a7b519", "value": "Fast Delivery"}],
+       "faqs": [],
+       "pricing": {"type": "fixed", "price_min": 2000, "price_max": 12000, "currency": "EUR"},
+       "created_at": "2026-04-05T08:00:00Z", "updated_at": "2026-04-05T08:00:00Z"
+     }}},
+
+    {"routing_key": "service.created",
+     "payload": {"event_type": "service.created", "version": 1, "timestamp": "2026-04-18T08:02:07Z", "data": {
+       "id": "a7442656-6c75-4a4d-bd9c-916847257b00",
+       "portfolio_id": "51bbffc1-f620-4e6d-8097-0eddbce1e298",
+       "title": "Analyse de données et dashboards Python",
+       "description": "Je transforme vos données brutes en insights visuels. Nettoyage de données, analyse exploratoire, dashboards interactifs avec Plotly/Dash ou Streamlit.",
+       "status": "active",
+       "category_id": "8b36247f-7de3-41f4-bc5f-69c7fd672f6e",
+       "tags": [{"id": "47420e58-2056-4894-ac08-a739c63473ee", "value": "python"}, {"id": "eefdc387-af6d-410d-aa15-276906dfec00", "value": "pandas"}, {"id": "0ce8045d-b927-4a98-9d53-cd083b1a3c00", "value": "data-visualization"}, {"id": "80e39daf-b1c7-4a0a-afb5-b8355ae45300", "value": "streamlit"}],
+       "awards": [], "faqs": [],
+       "pricing": {"type": "hourly", "price_min": 60, "price_max": 100, "currency": "EUR"},
+       "created_at": "2026-04-14T07:00:00Z", "updated_at": "2026-04-14T07:00:00Z"
+     }}},
+
+    {"routing_key": "service.created",
+     "payload": {"event_type": "service.created", "version": 1, "timestamp": "2026-04-18T08:02:08Z", "data": {
+       "id": "b6586586-19b2-485b-8349-6dc1f6b42b00",
+       "portfolio_id": "51bbffc1-f620-4e6d-8097-0eddbce1e298",
+       "title": "Modèle de Machine Learning sur mesure",
+       "description": "Développement de modèles ML personnalisés : classification, régression, NLP, computer vision. De la collecte de données au déploiement en production avec MLflow et Docker.",
+       "status": "active",
+       "category_id": "8b36247f-7de3-41f4-bc5f-69c7fd672f6e",
+       "tags": [{"id": "18e2246f-5754-471e-b81c-b4710fc11c00", "value": "machine-learning"}, {"id": "a9712433-6ab9-437a-8b09-75d4ab0e6400", "value": "tensorflow"}, {"id": "51bbffc1-f620-4e6d-8097-0eddbce1e200", "value": "nlp"}, {"id": "47420e58-2056-4894-ac08-a739c6347300", "value": "mlops"}],
+       "awards": [{"id": "eefdc387-af6d-410d-aa15-276906dfe000", "value": "Expert Verified"}],
+       "faqs": [{"id": "0ce8045d-b927-4a98-9d53-cd083b1a3000", "question": "Quel volume de données minimum ?", "answer": "1000+ exemples pour la classification, 10000+ pour du NLP."}],
+       "pricing": {"type": "fixed", "price_min": 5000, "price_max": 25000, "currency": "EUR"},
+       "created_at": "2026-04-11T15:00:00Z", "updated_at": "2026-04-11T15:00:00Z"
+     }}},
+
+    {"routing_key": "service.created",
+     "payload": {"event_type": "service.created", "version": 1, "timestamp": "2026-04-18T08:02:09Z", "data": {
+       "id": "20ff7930-fcd1-44dd-884e-d23f5a85f500",
+       "portfolio_id": "eefdc387-af6d-410d-aa15-276906dfec2b",
+       "title": "Infrastructure AWS et pipeline CI/CD",
+       "description": "Mise en place d'infrastructure cloud sur AWS avec Terraform. Pipelines CI/CD avec GitHub Actions ou Jenkins. Monitoring avec Prometheus et Grafana. Docker et Kubernetes.",
+       "status": "active",
+       "category_id": "2a8b1e13-5abb-431c-8840-86c2d944e292",
+       "tags": [{"id": "04656d6a-2a80-44f3-9ff3-f9365766bd00", "value": "aws"}, {"id": "15633a62-01dc-4b8a-b4b3-00784d020e00", "value": "terraform"}, {"id": "85367fb0-a972-42da-87da-450846c98a00", "value": "kubernetes"}, {"id": "f972b1cf-5292-46d5-be2e-0df127405c00", "value": "ci-cd"}, {"id": "c6dc0ffb-d84f-44fa-91a7-0fbc19b6c400", "value": "docker"}],
+       "awards": [], "faqs": [],
+       "pricing": {"type": "hourly", "price_min": 80, "price_max": 120, "currency": "EUR"},
+       "created_at": "2026-04-13T09:00:00Z", "updated_at": "2026-04-13T09:00:00Z"
+     }}},
+
+    {"routing_key": "service.created",
+     "payload": {"event_type": "service.created", "version": 1, "timestamp": "2026-04-18T08:02:10Z", "data": {
+       "id": "6e4fa07c-e277-468e-aa06-9c2d7cd6c200",
+       "portfolio_id": "eefdc387-af6d-410d-aa15-276906dfec2b",
+       "title": "Migration cloud et optimisation des coûts AWS",
+       "description": "J'accompagne votre migration vers le cloud AWS ou Azure. Audit de l'existant, plan de migration, exécution, optimisation des coûts. Réduction moyenne de 40% sur la facture cloud.",
+       "status": "active",
+       "category_id": "2a8b1e13-5abb-431c-8840-86c2d944e292",
+       "tags": [{"id": "d546f1a6-7d59-462f-aa01-fdee2786f500", "value": "aws"}, {"id": "d12ea844-dc23-489c-912a-997c3e9c3500", "value": "azure"}, {"id": "61b3699f-bf66-4c79-8efb-ddc1f4b63b00", "value": "cloud-migration"}, {"id": "9851cfba-cd72-4a34-bf83-e22b332c6200", "value": "cost-optimization"}],
+       "awards": [], "faqs": [],
+       "pricing": {"type": "fixed", "price_min": 5000, "price_max": 20000, "currency": "EUR"},
+       "created_at": "2026-04-07T10:00:00Z", "updated_at": "2026-04-07T10:00:00Z"
+     }}},
+
+
+    {"_comment": "=== REVIEWS ===",
+     "routing_key": "review.created",
+     "payload": {"event_type": "review.created", "version": 1, "timestamp": "2026-04-18T08:03:00Z", "data": {"id": "ca7cfaf9-7bfd-4048-8a8f-41f0de60b900", "service_id": "20ff7930-fcd1-44dd-884e-d23f5a85f5bc", "reviewer_id": "d82ed97a-31f1-426c-8b2b-745284015200", "rating": 5.0, "comment": "Excellent travail.", "status": "published", "created_at": "2026-04-12T10:00:00Z"}}},
+
+    {"routing_key": "review.created",
+     "payload": {"event_type": "review.created", "version": 1, "timestamp": "2026-04-18T08:03:01Z", "data": {"id": "8b6fdede-b7e7-40e3-8f6e-55faffa86b00", "service_id": "20ff7930-fcd1-44dd-884e-d23f5a85f5bc", "reviewer_id": "ef13f3a0-3d35-472b-9124-7af363310000", "rating": 4.5, "comment": "Très bon développeur.", "status": "published", "created_at": "2026-04-14T14:00:00Z"}}},
+
+    {"routing_key": "review.created",
+     "payload": {"event_type": "review.created", "version": 1, "timestamp": "2026-04-18T08:03:02Z", "data": {"id": "e5c46065-b298-4838-83a9-98ee58106c00", "service_id": "402e3e76-e41b-491e-8f00-bd18586b96b4", "reviewer_id": "d82ed97a-31f1-426c-8b2b-745284015200", "rating": 5.0, "comment": "Design magnifique.", "status": "published", "created_at": "2026-04-16T09:00:00Z"}}},
+
+    {"routing_key": "review.created",
+     "payload": {"event_type": "review.created", "version": 1, "timestamp": "2026-04-18T08:03:03Z", "data": {"id": "3449dac8-bf39-48db-9503-a4ebaac33200", "service_id": "3c14ff9c-a5d2-4c7d-ab02-c686799cfa22", "reviewer_id": "402e3e76-e41b-491e-8f00-bd18586b9600", "rating": 4.0, "comment": "App fonctionnelle.", "status": "published", "created_at": "2026-04-17T11:00:00Z"}}},
+
+    {"routing_key": "review.created",
+     "payload": {"event_type": "review.created", "version": 1, "timestamp": "2026-04-18T08:03:04Z", "data": {"id": "2e298f39-c675-47b1-b47c-94c1e57c9500", "service_id": "1533f974-867a-410f-8062-cc172343902b", "reviewer_id": "ef13f3a0-3d35-472b-9124-7af363310000", "rating": 4.8, "comment": "App Flutter superbe.", "status": "published", "created_at": "2026-04-17T15:00:00Z"}}},
+
+
+    {"_comment": "=== JOB POSTS ===",
+     "routing_key": "job_post.created",
+     "payload": {"event_type": "job_post.created", "version": 1, "timestamp": "2026-04-18T08:04:00Z", "data": {"id": "286f7bc8-7d96-4535-b674-770eaa8dbe00", "client_id": "d82ed97a-31f1-426c-8b2b-745284015200", "title": "Refonte plateforme SaaS en React", "description": "Développeur React senior pour refondre notre plateforme SaaS. Migration Vue.js vers React/Next.js, refonte design, optimisation performances.", "status": "open", "budget": {"type": "fixed", "budget_min": 10000, "budget_max": 25000, "currency": "EUR"}, "created_at": "2026-04-17T08:00:00Z", "updated_at": "2026-04-17T08:00:00Z"}}},
+
+    {"routing_key": "job_post.created",
+     "payload": {"event_type": "job_post.created", "version": 1, "timestamp": "2026-04-18T08:04:01Z", "data": {"id": "d62e350f-25a0-4a6a-ae37-edc98fa94000", "client_id": "ef13f3a0-3d35-472b-9124-7af363310000", "title": "Application mobile de livraison", "description": "Développeur mobile pour créer une app de livraison. Géolocalisation, paiement en ligne, notifications push, interface client + livreur.", "status": "open", "budget": {"type": "fixed", "budget_min": 15000, "budget_max": 30000, "currency": "EUR"}, "created_at": "2026-04-16T12:00:00Z", "updated_at": "2026-04-16T12:00:00Z"}}},
+
+    {"routing_key": "job_post.created",
+     "payload": {"event_type": "job_post.created", "version": 1, "timestamp": "2026-04-18T08:04:02Z", "data": {"id": "d11fb8aa-e63a-4869-9c6d-77f65d622a00", "client_id": "402e3e76-e41b-491e-8f00-bd18586b9600", "title": "Dashboard analytics avec visualisation", "description": "Data scientist pour créer un dashboard interactif visualisant nos KPIs de vente. Connexion PostgreSQL, graphiques dynamiques, export PDF.", "status": "open", "budget": {"type": "hourly", "budget_min": 50, "budget_max": 90, "currency": "EUR"}, "created_at": "2026-04-15T14:00:00Z", "updated_at": "2026-04-15T14:00:00Z"}}},
+
+
+    {"_comment": "=== INTERACTIONS client-0001 (aime web dev React) — 10 events ===",
+     "routing_key": "user.interaction.like",
+     "payload": {"event_type": "user.interaction.like", "version": 1, "timestamp": "2026-04-18T09:00:00Z", "data": {"user_id": "d82ed97a-31f1-426c-8b2b-745284015200", "item_type": "service", "item_id": "20ff7930-fcd1-44dd-884e-d23f5a85f5bc", "interaction_type": "like", "weight": 1.0, "source": "feed", "position": 1, "timestamp": "2026-04-18T09:00:00Z"}}},
+
+    {"routing_key": "user.interaction.like",
+     "payload": {"event_type": "user.interaction.like", "version": 1, "timestamp": "2026-04-18T09:00:01Z", "data": {"user_id": "d82ed97a-31f1-426c-8b2b-745284015200", "item_type": "service", "item_id": "6e4fa07c-e277-468e-aa06-9c2d7cd6c233", "interaction_type": "like", "weight": 1.0, "source": "feed", "position": 2, "timestamp": "2026-04-18T09:00:01Z"}}},
+
+    {"routing_key": "user.interaction.view",
+     "payload": {"event_type": "user.interaction.view", "version": 1, "timestamp": "2026-04-18T09:00:02Z", "data": {"user_id": "d82ed97a-31f1-426c-8b2b-745284015200", "item_type": "service", "item_id": "3c14ff9c-a5d2-4c7d-ab02-c686799cfa22", "interaction_type": "view", "weight": 0.1, "source": "search", "position": null, "timestamp": "2026-04-18T09:00:02Z"}}},
+
+    {"routing_key": "user.interaction.bookmark",
+     "payload": {"event_type": "user.interaction.bookmark", "version": 1, "timestamp": "2026-04-18T09:00:03Z", "data": {"user_id": "d82ed97a-31f1-426c-8b2b-745284015200", "item_type": "service", "item_id": "20ff7930-fcd1-44dd-884e-d23f5a85f5bc", "interaction_type": "bookmark", "weight": 0.8, "source": "feed", "position": 1, "timestamp": "2026-04-18T09:00:03Z"}}},
+
+    {"routing_key": "user.interaction.view",
+     "payload": {"event_type": "user.interaction.view", "version": 1, "timestamp": "2026-04-18T09:00:04Z", "data": {"user_id": "d82ed97a-31f1-426c-8b2b-745284015200", "item_type": "service", "item_id": "402e3e76-e41b-491e-8f00-bd18586b96b4", "interaction_type": "view", "weight": 0.1, "source": "feed", "position": 5, "timestamp": "2026-04-18T09:00:04Z"}}},
+
+    {"routing_key": "user.interaction.view",
+     "payload": {"event_type": "user.interaction.view", "version": 1, "timestamp": "2026-04-18T09:00:05Z", "data": {"user_id": "d82ed97a-31f1-426c-8b2b-745284015200", "item_type": "service", "item_id": "6e4fa07c-e277-468e-aa06-9c2d7cd6c233", "interaction_type": "view_long", "weight": 0.4, "source": "feed", "position": 2, "timestamp": "2026-04-18T09:00:05Z"}}},
+
+    {"routing_key": "user.interaction.view",
+     "payload": {"event_type": "user.interaction.view", "version": 1, "timestamp": "2026-04-18T09:00:06Z", "data": {"user_id": "d82ed97a-31f1-426c-8b2b-745284015200", "item_type": "service", "item_id": "ca7cfaf9-7bfd-4048-8a8f-41f0de60b96c", "interaction_type": "view", "weight": 0.1, "source": "feed", "position": 8, "timestamp": "2026-04-18T09:00:06Z"}}},
+
+    {"routing_key": "user.interaction.view",
+     "payload": {"event_type": "user.interaction.view", "version": 1, "timestamp": "2026-04-18T09:00:07Z", "data": {"user_id": "d82ed97a-31f1-426c-8b2b-745284015200", "item_type": "service", "item_id": "20ff7930-fcd1-44dd-884e-d23f5a85f500", "interaction_type": "view", "weight": 0.1, "source": "search", "position": null, "timestamp": "2026-04-18T09:00:07Z"}}},
+
+    {"routing_key": "user.interaction.view",
+     "payload": {"event_type": "user.interaction.view", "version": 1, "timestamp": "2026-04-18T09:00:08Z", "data": {"user_id": "d82ed97a-31f1-426c-8b2b-745284015200", "item_type": "service", "item_id": "a7442656-6c75-4a4d-bd9c-916847257b00", "interaction_type": "view", "weight": 0.1, "source": "feed", "position": 12, "timestamp": "2026-04-18T09:00:08Z"}}},
+
+    {"_comment": "Apply = signal fort → flush immédiat",
+     "routing_key": "user.interaction.apply",
+     "payload": {"event_type": "user.interaction.apply", "version": 1, "timestamp": "2026-04-18T09:01:00Z", "data": {"user_id": "d82ed97a-31f1-426c-8b2b-745284015200", "item_type": "service", "item_id": "20ff7930-fcd1-44dd-884e-d23f5a85f5bc", "interaction_type": "apply", "weight": 5.0, "source": "feed", "position": 1, "timestamp": "2026-04-18T09:01:00Z"}}},
+
+
+    {"_comment": "=== INTERACTIONS client-0002 (aime mobile) ===",
+     "routing_key": "user.interaction.like",
+     "payload": {"event_type": "user.interaction.like", "version": 1, "timestamp": "2026-04-18T09:05:00Z", "data": {"user_id": "ef13f3a0-3d35-472b-9124-7af363310000", "item_type": "service", "item_id": "3c14ff9c-a5d2-4c7d-ab02-c686799cfa22", "interaction_type": "like", "weight": 1.0, "source": "feed", "position": 1, "timestamp": "2026-04-18T09:05:00Z"}}},
+
+    {"routing_key": "user.interaction.like",
+     "payload": {"event_type": "user.interaction.like", "version": 1, "timestamp": "2026-04-18T09:05:01Z", "data": {"user_id": "ef13f3a0-3d35-472b-9124-7af363310000", "item_type": "service", "item_id": "1533f974-867a-410f-8062-cc172343902b", "interaction_type": "like", "weight": 1.0, "source": "feed", "position": 2, "timestamp": "2026-04-18T09:05:01Z"}}},
+
+    {"_comment": "Apply = signal fort → flush immédiat pour client-0002",
+     "routing_key": "user.interaction.apply",
+     "payload": {"event_type": "user.interaction.apply", "version": 1, "timestamp": "2026-04-18T09:05:02Z", "data": {"user_id": "ef13f3a0-3d35-472b-9124-7af363310000", "item_type": "service", "item_id": "3c14ff9c-a5d2-4c7d-ab02-c686799cfa22", "interaction_type": "apply", "weight": 5.0, "source": "feed", "position": 1, "timestamp": "2026-04-18T09:05:02Z"}}},
+
+
+    {"_comment": "=== FOLLOWS ===",
+     "routing_key": "user.follow.created",
+     "payload": {"event_type": "user.follow.created", "version": 1, "timestamp": "2026-04-18T09:10:00Z", "data": {"user_id": "d82ed97a-31f1-426c-8b2b-745284015200", "portfolio_id": "839e9294-2eeb-4886-8469-dc1b24933938", "timestamp": "2026-04-18T09:10:00Z"}}},
+
+    {"routing_key": "user.follow.created",
+     "payload": {"event_type": "user.follow.created", "version": 1, "timestamp": "2026-04-18T09:10:01Z", "data": {"user_id": "ef13f3a0-3d35-472b-9124-7af363310000", "portfolio_id": "18e2246f-5754-471e-b81c-b4710fc11cb3", "timestamp": "2026-04-18T09:10:01Z"}}},
+
+
+    {"_comment": "=== DISMISS ===",
+     "routing_key": "user.interaction.dismiss",
+     "payload": {"event_type": "user.interaction.dismiss", "version": 1, "timestamp": "2026-04-18T09:15:00Z", "data": {"user_id": "d82ed97a-31f1-426c-8b2b-745284015200", "item_type": "service", "item_id": "ca7cfaf9-7bfd-4048-8a8f-41f0de60b96c", "interaction_type": "dismiss", "weight": -0.5, "source": "feed", "position": 8, "timestamp": "2026-04-18T09:15:00Z"}}}
+  ]
+}
