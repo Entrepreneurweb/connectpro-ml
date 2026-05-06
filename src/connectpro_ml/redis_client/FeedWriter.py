@@ -56,9 +56,9 @@
 #     await r.delete(f"feed:user:{user_id}")
 
 """
-Feed writer — écrit le feed précalculé dans Redis.
+Feed writer  écrit le feed précalculé dans Redis.
 
-Structure Redis :
+
   feed:user:{userId}  → Sorted Set (member="{type}:{id}", score=float)
   TTL : 7 jours
 """
@@ -68,7 +68,7 @@ from connectpro_ml.redis_client.RedisClient import get_redis
 
 logger = logging.getLogger(__name__)
 
-FEED_TTL_SECONDS = 7 * 24 * 60 * 60  # 7 jours
+FEED_TTL_SECONDS = 7 * 24 * 60 * 60  # temps ttl
 
 
 async def write_user_feed(user_id: str, scored_items: list) -> None:
@@ -88,7 +88,7 @@ async def write_user_feed(user_id: str, scored_items: list) -> None:
 
         await pipe.execute()
 
-    logger.info("✅ Feed écrit dans Redis — user=%s, items=%d, key=%s", user_id, len(scored_items), key)
+    logger.info(" Feed écrit dans Redis — user=%s, items=%d, key=%s", user_id, len(scored_items), key)
 
 
 async def read_user_feed(user_id: str, skip: int = 0, take: int = 20) -> list[dict]:

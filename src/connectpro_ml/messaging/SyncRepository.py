@@ -1,7 +1,4 @@
-"""
-Sync repositories — upserts SQL pour les entités miroir.
-Chaque fonction prend une connexion asyncpg et le payload data de l'event.
-"""
+
 import logging
 from datetime import datetime, date, timezone
 
@@ -9,10 +6,6 @@ from asyncpg import Connection
 
 logger = logging.getLogger(__name__)
 
-
-# ---------------------------------------------------------------------------
-# Helpers de parsing
-# ---------------------------------------------------------------------------
 
 def parse_timestamp(value) -> datetime | None:
     if value is None:
@@ -30,10 +23,6 @@ def parse_date(value) -> date | None:
     return date.fromisoformat(value)
 
 
-# ---------------------------------------------------------------------------
-# CATEGORIES
-# ---------------------------------------------------------------------------
-
 async def upsert_category(conn: Connection, data: dict) -> None:
     await conn.execute(
         """
@@ -44,12 +33,9 @@ async def upsert_category(conn: Connection, data: dict) -> None:
         data["id"],
         data["value"],
     )
-    logger.info("✅ Category upserted — id=%s, value=%s", data["id"], data["value"])
+    logger.info(" Category upserted — id=%s, value=%s", data["id"], data["value"])
 
 
-# ---------------------------------------------------------------------------
-# PORTFOLIOS
-# ---------------------------------------------------------------------------
 
 async def upsert_portfolio(conn: Connection, data: dict) -> None:
     async with conn.transaction():
@@ -102,7 +88,7 @@ async def upsert_portfolio(conn: Connection, data: dict) -> None:
 
         portfolio_id = data["id"]
 
-        # Skills
+
         skills = professional.get("skills") or []
         await conn.execute("DELETE FROM portfolio_skills WHERE portfolio_id = $1", portfolio_id)
         if skills:
@@ -111,7 +97,6 @@ async def upsert_portfolio(conn: Connection, data: dict) -> None:
                 [(portfolio_id, s) for s in skills],
             )
 
-        # Experiences
         experiences = data.get("experiences") or []
         await conn.execute("DELETE FROM portfolio_experiences WHERE portfolio_id = $1", portfolio_id)
         if experiences:
@@ -134,7 +119,7 @@ async def upsert_portfolio(conn: Connection, data: dict) -> None:
                 ],
             )
 
-        # Certifications
+
         certifications = data.get("certifications") or []
         await conn.execute("DELETE FROM portfolio_certifications WHERE portfolio_id = $1", portfolio_id)
         if certifications:
@@ -160,14 +145,10 @@ async def upsert_portfolio(conn: Connection, data: dict) -> None:
             )
 
     logger.info(
-        "✅ Portfolio upserted — id=%s, skills=%d, exp=%d, certs=%d",
+        " Portfolio upserted — id=%s, skills=%d, exp=%d, certs=%d",
         portfolio_id, len(skills), len(experiences), len(certifications),
     )
 
-
-# ---------------------------------------------------------------------------
-# SERVICES
-# ---------------------------------------------------------------------------
 
 async def upsert_service(conn: Connection, data: dict) -> None:
     async with conn.transaction():
@@ -215,7 +196,7 @@ async def upsert_service(conn: Connection, data: dict) -> None:
 
         service_id = data["id"]
 
-        # Tags
+
         tags = data.get("tags") or []
         await conn.execute("DELETE FROM service_tags WHERE service_id = $1", service_id)
         if tags:
@@ -224,7 +205,7 @@ async def upsert_service(conn: Connection, data: dict) -> None:
                 [(service_id, t["id"], t["value"]) for t in tags],
             )
 
-        # Awards
+
         awards = data.get("awards") or []
         await conn.execute("DELETE FROM service_awards WHERE service_id = $1", service_id)
         if awards:
@@ -233,7 +214,7 @@ async def upsert_service(conn: Connection, data: dict) -> None:
                 [(service_id, a["id"], a["value"]) for a in awards],
             )
 
-        # FAQs
+
         faqs = data.get("faqs") or []
         await conn.execute("DELETE FROM service_faqs WHERE service_id = $1", service_id)
         if faqs:
@@ -243,7 +224,7 @@ async def upsert_service(conn: Connection, data: dict) -> None:
             )
 
     logger.info(
-        "✅ Service upserted — id=%s, title=%s, tags=%d, awards=%d, faqs=%d",
+        " Service upserted — id=%s, title=%s, tags=%d, awards=%d, faqs=%d",
         service_id, data["title"], len(tags), len(awards), len(faqs),
     )
 
@@ -253,17 +234,14 @@ async def update_service_status(conn: Connection, service_id: str, new_status: s
         "UPDATE services SET status = $1, synced_at = NOW() WHERE id = $2",
         new_status, service_id,
     )
-    logger.info("✅ Service status updated — id=%s → %s", service_id, new_status)
+    logger.info(" Service status updated — id=%s → %s", service_id, new_status)
 
 
 async def delete_service(conn: Connection, service_id: str) -> None:
     await conn.execute("DELETE FROM services WHERE id = $1", service_id)
-    logger.info("✅ Service deleted — id=%s (CASCADE: tags, awards, faqs)", service_id)
+    logger.info(" Service deleted — id=%s (CASCADE: tags, awards, faqs)", service_id)
 
 
-# ---------------------------------------------------------------------------
-# JOB POSTS
-# ---------------------------------------------------------------------------
 
 async def upsert_job_post(conn: Connection, data: dict) -> None:
     budget = data.get("budget") or {}
@@ -305,7 +283,7 @@ async def upsert_job_post(conn: Connection, data: dict) -> None:
         parse_timestamp(data.get("created_at")),
         parse_timestamp(data.get("updated_at")),
     )
-    logger.info("✅ JobPost upserted — id=%s, title=%s", data["id"], data["title"])
+    logger.info(" JobPost upserted — id=%s, title=%s", data["id"], data["title"])
 
 
 async def update_job_post_status(conn: Connection, job_post_id: str, new_status: str) -> None:
@@ -313,12 +291,9 @@ async def update_job_post_status(conn: Connection, job_post_id: str, new_status:
         "UPDATE job_posts SET status = $1, synced_at = NOW() WHERE id = $2",
         new_status, job_post_id,
     )
-    logger.info("✅ JobPost status updated — id=%s → %s", job_post_id, new_status)
+    logger.info(" JobPost status updated — id=%s → %s", job_post_id, new_status)
 
 
-# ---------------------------------------------------------------------------
-# REVIEWS
-# ---------------------------------------------------------------------------
 
 async def upsert_review(conn: Connection, data: dict) -> None:
     await conn.execute(
@@ -338,4 +313,4 @@ async def upsert_review(conn: Connection, data: dict) -> None:
         data.get("status", "published"),
         parse_timestamp(data.get("created_at")),
     )
-    logger.info("✅ Review upserted — id=%s, service=%s, rating=%s", data["id"], data["service_id"], data["rating"])
+    logger.info(" Review upserted — id=%s, service=%s, rating=%s", data["id"], data["service_id"], data["rating"])

@@ -59,9 +59,8 @@ def enqueue_embedding(entity_type: str, entity_id: str) -> None:
     logger.debug(" Embedding job enqueued — %s:%s (queue size: %d)", entity_type, entity_id, _queue.qsize())
 
 
-# ---------------------------------------------------------------------------
+
 # Worker loop
-# ---------------------------------------------------------------------------
 
 async def _worker_loop() -> None:
     logger.info(" Embedding worker loop started")
@@ -106,7 +105,7 @@ async def _process_job(job: EmbeddingJob) -> None:
 
 async def _embed_service(service_id: str) -> None:
     async with get_connection() as conn:
-        # Lire les données du service
+
         row = await conn.fetchrow(
             """
             SELECT s.title, s.description, c.value as category_name
@@ -120,21 +119,20 @@ async def _embed_service(service_id: str) -> None:
             logger.warning(" Service introuvable pour embedding — id=%s", service_id)
             return
 
-        # Lire les tags
+
         tag_rows = await conn.fetch(
             "SELECT value FROM service_tags WHERE service_id = $1",
             service_id,
         )
         tags = [r["value"] for r in tag_rows]
 
-        # Lire les FAQs
+
         faq_rows = await conn.fetch(
             "SELECT question, answer FROM service_faqs WHERE service_id = $1",
             service_id,
         )
         faqs = [{"question": r["question"], "answer": r["answer"]} for r in faq_rows]
 
-        # Construire le texte et calculer l'embedding
         text = build_service_text(
             title=row["title"],
             description=row["description"],
@@ -144,7 +142,6 @@ async def _embed_service(service_id: str) -> None:
         )
         embedding_bytes = compute_embedding(text)
 
-        # Persister
         await conn.execute(
             """
             UPDATE services
@@ -161,23 +158,21 @@ async def _embed_service(service_id: str) -> None:
 
 async def _embed_portfolio(portfolio_id: str) -> None:
     async with get_connection() as conn:
-        # Lire le portfolio
+
         row = await conn.fetchrow(
             "SELECT headline, bio FROM portfolios WHERE id = $1",
             portfolio_id,
         )
         if not row:
-            logger.warning("⚠️ Portfolio introuvable pour embedding — id=%s", portfolio_id)
+            logger.warning(" Portfolio introuvable pour embedding — id=%s", portfolio_id)
             return
 
-        # Lire les skills
         skill_rows = await conn.fetch(
             "SELECT skill FROM portfolio_skills WHERE portfolio_id = $1",
             portfolio_id,
         )
         skills = [r["skill"] for r in skill_rows]
 
-        # Lire les expériences
         exp_rows = await conn.fetch(
             "SELECT role, company, description FROM portfolio_experiences WHERE portfolio_id = $1",
             portfolio_id,
@@ -187,7 +182,6 @@ async def _embed_portfolio(portfolio_id: str) -> None:
             for r in exp_rows
         ]
 
-        # Construire le texte et calculer l'embedding
         text = build_portfolio_text(
             headline=row["headline"],
             bio=row["bio"],
@@ -201,7 +195,6 @@ async def _embed_portfolio(portfolio_id: str) -> None:
 
         embedding_bytes = compute_embedding(text)
 
-        # Persister
         await conn.execute(
             """
             UPDATE portfolios

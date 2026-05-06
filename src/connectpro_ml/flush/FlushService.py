@@ -11,17 +11,10 @@ logger = logging.getLogger(__name__)
 
 
 async def flush_user(user_id: str) -> None:
-    """
-    1. Lire le buffer pending_interactions
-    2. Déplacer vers interactions (dédup)
-    3. Mettre à jour les affinités (catégorie, tags, skills)
-    4. Mettre à jour l'embedding long terme
-    5. Vider le buffer
-    6. Recalculer le feed
-    """
+
     async with get_connection() as conn:
         async with conn.transaction():
-            # 1. Lire le buffer
+            #  Lire le buffer
             pending = await conn.fetch(
                 """
                 SELECT id, user_id, item_type, item_id, interaction_type,
@@ -159,7 +152,7 @@ async def _update_affinities(conn: Connection, user_id: str, pending: list) -> N
             user_id, cat_id, score,
         )
 
-    # Upsert tags
+  
     for tag, score in tag_scores.items():
         await conn.execute(
             """

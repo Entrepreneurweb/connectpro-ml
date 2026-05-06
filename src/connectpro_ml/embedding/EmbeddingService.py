@@ -7,7 +7,7 @@ import os
 logger = logging.getLogger(__name__)
 
 
-# evite les requtet
+
 os.environ["HF_HUB_OFFLINE"] = "1"
 
 MODEL_NAME = "paraphrase-multilingual-MiniLM-L12-v2"

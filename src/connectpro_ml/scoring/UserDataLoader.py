@@ -1,6 +1,5 @@
 """
-User data loader — charge toutes les données nécessaires d'un user
-pour le scoring (requêtes séquentielles sur une seule connexion).
+charger les donnée necessaire d'un user pour le scoring
 """
 import logging
 from dataclasses import dataclass, field
@@ -13,7 +12,6 @@ logger = logging.getLogger(__name__)
 
 @dataclass
 class UserData:
-    """Toutes les données d'un user nécessaires au scoring."""
     user_id: str
     long_term_embedding: np.ndarray | None = None
     total_interactions_used: int = 0
@@ -30,11 +28,7 @@ class UserData:
 
 
 async def load_user_data(conn: Connection, user_id: str) -> UserData:
-    """
-    Charge toutes les données du user séquentiellement.
-    Retourne un UserData prêt pour le scoring.
-    """
-    # Profil embedding long terme
+
     profile_row = await conn.fetchrow(
         "SELECT semantic_embedding, total_interactions_used FROM user_profiles WHERE user_id = $1",
         user_id,
@@ -85,7 +79,6 @@ async def load_user_data(conn: Connection, user_id: str) -> UserData:
         user_id,
     )
 
-    # Construire le UserData
     data = UserData(user_id=user_id)
 
     # Profil long terme
@@ -98,7 +91,7 @@ async def load_user_data(conn: Connection, user_id: str) -> UserData:
     data.tag_affinity = {r["tag_value"]: float(r["score"]) for r in tag_rows}
     data.skill_affinity = {r["skill"]: float(r["score"]) for r in skill_rows}
 
-    # Follows et dismissed
+
     data.followed_portfolios = {str(r["portfolio_id"]) for r in follow_rows}
     data.dismissed_items = {str(r["item_id"]) for r in dismissed_rows}
 
@@ -108,7 +101,7 @@ async def load_user_data(conn: Connection, user_id: str) -> UserData:
         data.recent_embeddings.append((vec, float(row["weight"])))
 
     logger.info(
-        "📋 User data loaded — user=%s, lt_profile=%s, cats=%d, tags=%d, skills=%d, follows=%d, recent=%d",
+        " User data loaded — user=%s, lt_profile=%s, cats=%d, tags=%d, skills=%d, follows=%d, recent=%d",
         user_id,
         data.long_term_embedding is not None,
         len(data.cat_affinity),

@@ -15,9 +15,6 @@ CRON_INTERVAL_SECONDS = 30 #300
 
 HIGH_SIGNAL_TYPES = {"apply", "purchase", "contact", "quote_request"}
 
-
-
-
 _worker_task: asyncio.Task | None = None
 
 

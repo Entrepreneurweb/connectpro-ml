@@ -8,7 +8,7 @@ from connectpro_ml.persistence.Database import db_dependency
 router = APIRouter(prefix="/items", tags=["items"])
  
  
-# ── Schémas ───────────────────────────────────────────────────────────────
+#  Schémas
  
 class ItemCreate(BaseModel):
     name: str
@@ -21,7 +21,7 @@ class ItemResponse(BaseModel):
     category: str | None
  
  
-# ── Endpoints ─────────────────────────────────────────────────────────────
+#  Endpoints
  
 @router.get("/", response_model=list[ItemResponse])
 async def list_items(conn: Connection = Depends(db_dependency)):
