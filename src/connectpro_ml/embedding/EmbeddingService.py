@@ -21,7 +21,7 @@ def load_model() -> None:
     global _model
     logger.info(" Chargement du modèle d'embedding — %s ...", MODEL_NAME)
     _model = SentenceTransformer(MODEL_NAME)
-    logger.info(" Modèle chargé — dimensions=%d", _model.get_embedding_dimension())
+    logger.info(" Modèle chargé — dimensions 384" )
 
 
 def get_model() -> SentenceTransformer:
