@@ -209,7 +209,31 @@ CREATE TABLE recompute_log (
     duration_ms     INTEGER NOT NULL,
     computed_at     TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
---
+
+CREATE MATERIALIZED VIEW service_review_stats AS
+SELECT
+    service_id,
+    COUNT(*) AS review_count,
+    AVG(rating) AS avg_rating
+FROM reviews
+WHERE status = 'published'
+GROUP BY service_id;
+
+CREATE UNIQUE INDEX ON service_review_stats(service_id);
+
+CREATE MATERIALIZED VIEW portfolio_review_stats AS
+SELECT
+    p.id AS portfolio_id,
+    COUNT(r.id) AS total_review_count,
+    AVG(r.rating) AS avg_rating
+FROM portfolios p
+JOIN services s ON s.portfolio_id = p.id
+JOIN reviews r ON r.service_id = s.id
+WHERE r.status = 'published'
+GROUP BY p.id;
+
+CREATE UNIQUE INDEX ON portfolio_review_stats(portfolio_id);
+
 -- CREATE TABLE pending_interactions (
 --     id                  BIGSERIAL PRIMARY KEY,
 --     user_id             UUID NOT NULL,

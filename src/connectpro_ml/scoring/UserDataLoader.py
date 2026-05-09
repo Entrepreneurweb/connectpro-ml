@@ -65,16 +65,44 @@ async def load_user_data(conn: Connection, user_id: str) -> UserData:
     )
 
     # Interactions récentes (pour le profil court terme)
+    # recent_rows = await conn.fetch(
+    #     """
+    #     SELECT s.embedding, i.weight, i.occurred_at
+    #     FROM interactions i
+    #     JOIN services s ON s.id = i.item_id
+    #     WHERE i.user_id = $1
+    #       AND s.embedding IS NOT NULL
+    #       AND i.occurred_at > NOW() - INTERVAL '30 days'
+    #     ORDER BY i.occurred_at DESC
+    #     LIMIT 50
+    #     """,
+    #     user_id,
+    # )
+
+    # CORRIGÉ — services + job posts
     recent_rows = await conn.fetch(
         """
-        SELECT s.embedding, i.weight, i.occurred_at
-        FROM interactions i
-        JOIN services s ON s.id = i.item_id
-        WHERE i.user_id = $1
-          AND s.embedding IS NOT NULL
-          AND i.occurred_at > NOW() - INTERVAL '30 days'
-        ORDER BY i.occurred_at DESC
-        LIMIT 50
+        SELECT embedding, weight, occurred_at
+        FROM (SELECT s.embedding, i.weight, i.occurred_at
+              FROM interactions i
+                       JOIN services s ON s.id = i.item_id
+              WHERE i.user_id = $1
+                AND i.item_type = 'service'
+                AND s.embedding IS NOT NULL
+                AND i.occurred_at > NOW() - INTERVAL '30 days'
+
+              UNION ALL
+
+              SELECT j.embedding, i.weight, i.occurred_at
+              FROM interactions i
+                  JOIN job_posts j
+              ON j.id = i.item_id
+              WHERE i.user_id = $1
+                AND i.item_type = 'job_post'
+                AND j.embedding IS NOT NULL
+                AND i.occurred_at
+                  > NOW() - INTERVAL '30 days') combined
+        ORDER BY occurred_at DESC LIMIT 50
         """,
         user_id,
     )
