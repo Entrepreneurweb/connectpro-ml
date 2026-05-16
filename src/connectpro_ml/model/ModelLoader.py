@@ -1,7 +1,4 @@
-"""
-Model loader — charge le modele LightFM depuis le disque,
-le maintient en memoire, et fournit les predictions.
-"""
+ 
 import logging
 import os
 import pickle

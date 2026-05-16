@@ -1,7 +1,4 @@
-"""
-Model trainer  entraine le modele LightFM sur les interactions
-et features, puis sauvegarde sur disque.
-"""
+ 
 import logging
 import os
 import pickle

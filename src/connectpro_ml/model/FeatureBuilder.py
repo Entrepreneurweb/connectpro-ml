@@ -1,7 +1,4 @@
-"""
-Feature builder  construit les matrices d'interactions et de features
-necessaires a l'entrainement de LightFM depuis PostgreSQL.
-"""
+ 
 import logging
 from dataclasses import dataclass
 

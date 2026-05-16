@@ -1,7 +1,4 @@
-"""
-Training worker  cron periodique qui entraine LightFM
-et recharge le modele en memoire apres l'entrainement.
-"""
+ 
 import asyncio
 import logging
 

@@ -1,6 +1,4 @@
-"""
-charger les donnée necessaire d'un user pour le scoring
-"""
+ 
 import logging
 from dataclasses import dataclass, field
 
